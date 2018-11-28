@@ -19,17 +19,17 @@ export class AppComponent implements OnInit {
   // See https://www.ag-grid.com/javascript-grid-column-definitions/
   columnDefs = [
     {
-      field: 'category',
+      field: 'id',
     },
     {
-      field: 'translation'
+      field: 'name'
     },
   ];
 
 
   ngOnInit() {
     setTimeout(() => {
-      this.api = `http://api.ccga-stage.innovexa.com/translations/search?`;
+      this.api = `https://5bff0f87362b930013f652d1.mockapi.io/api/test?`;
     }, 100);
   }
 

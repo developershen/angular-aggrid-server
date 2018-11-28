@@ -56,15 +56,14 @@ export class ServersideGridViewComponent {
       getRows: params => {
         const request: IServerSideGetRowsRequest = params.request;
         const page = request.startRow / this.pageSize + 1;
-        const api = `${this.apiEndpoint}&perPage=${this.pageSize}&page=${page}`;
+        const api = `${this.apiEndpoint}&l=${this.pageSize}&p=${page}`;
        
         this.http
           .get(api)
           .subscribe(
-            data => {
-              console.log(data['data']['resultsTotal']);
-              const lastRow =  data['data']['resultsTotal'] <= params.lastRow ? data['data']['resultsTotal'] : -1;
-              params.successCallback(data['data'].results, lastRow);
+            data => { const resultsTotal = 100;
+              const lastRow =  resultsTotal <= params.lastRow ? resultsTotal : -1;
+              params.successCallback(data, lastRow);
             },
             () => {
               params.failCallback();
